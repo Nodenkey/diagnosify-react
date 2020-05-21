@@ -16,7 +16,8 @@ const INITIAL_STATE = {
     loginError: false,
     logoutError: false,
     isAuthenticated: false,
-    user: {}
+    user: {},
+    loginErrorMessage: ''
 };
 
 const userReducer = (state = INITIAL_STATE, action) => {
@@ -32,7 +33,7 @@ const userReducer = (state = INITIAL_STATE, action) => {
             };
         case LOGIN_FAILURE:
             return {
-                ...state, isLoggingIn: false, isAuthenticated: false, loginError: true,
+                ...state, isLoggingIn: false, isAuthenticated: false, loginError: true, loginErrorMessage: action.error.message,
             };
         case LOGOUT_REQUEST:
             return {

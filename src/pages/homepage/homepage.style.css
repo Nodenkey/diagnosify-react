@@ -58,16 +58,15 @@
     padding: 50px 5%! important;
     text-align: center;
 }
-.medium h5{
-    font-family: Chalkduster, serif;
+.medium h3{
     line-height: 2em;
     font-weight: 900;
 }
-.medium h5::before, .medium h5::after{
+.medium h3::before, .medium h3::after{
     content: open-quote;
     font-size: 3em;
 }
-.medium h5::after{
+.medium h3::after{
     content: close-quote;
 }
 .whiten{

@@ -115,6 +115,14 @@ input {
     justify-content: space-between;
     align-items: center;
 }
+.main-error{
+    margin-top: -20px;
+    margin-bottom: 5px;
+}
+.submit-spinner{
+    font-size: 2em;
+    margin-right: 20px;
+}
 
 @media only screen and (min-width: 600px) {
     .signup-card {

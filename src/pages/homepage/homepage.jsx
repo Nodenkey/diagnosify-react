@@ -61,8 +61,8 @@ const Homepage = () => {
                 </div>
             </section>
             <section className="medium">
-                <h5>AI Startup, Diagnosify is leveraging advanced technology to aid patients with proficient
-                    diagnosis and treatment of skin diseases in the health sector of Ghana.</h5>
+                <h3>AI Startup, Diagnosify is leveraging advanced technology to aid patients with proficient
+                    diagnosis and treatment of skin diseases in the health sector of Ghana.</h3>
                 <div className="read"><p className="whiten">-Ghana Tech Lab</p>
                     <a href="https://medium.com/@ghanatechlab/ai-startup-diagnosify-to-aid-patients-with-proficient
                     -diagnosis-and-treatment-of-skin-diseases-36ae0dd8bec6" target="_blank" rel="noopener noreferrer"><i

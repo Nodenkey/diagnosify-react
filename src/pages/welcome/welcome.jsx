@@ -6,7 +6,7 @@ import {Redirect} from "react-router-dom";
 import {loginUser} from "../../redux/actions";
 import {errorObject, validateEmail, validatePassword} from "../../utils/validation";
 
-const Welcome = ({loginUser, isLoggingIn, loginError, isAuthenticated}) => {
+const Welcome = ({loginUser, isLoggingIn, loginError, isAuthenticated, loginErrorMessage}) => {
         const [userCredentials, setUserCredentials] = useState({
             email: '',
             password: '',
@@ -48,7 +48,7 @@ const Welcome = ({loginUser, isLoggingIn, loginError, isAuthenticated}) => {
                         sign_up_pass.type = "password";
                     }
                 }
-            }, [visible]
+            }, [visible, isAuthenticated]
         )
         ;
 
@@ -90,12 +90,11 @@ const Welcome = ({loginUser, isLoggingIn, loginError, isAuthenticated}) => {
         };
         const handlePasswordChange = (event) => {
             welcomeValidatePass(event);
-            setUserCredentials({...userCredentials, email: event.target.value})
+            setUserCredentials({...userCredentials, password: event.target.value})
         };
 
         const handleSubmit = (event) => {
             event.preventDefault();
-            console.log('submit');
             loginUser(userCredentials.email, userCredentials.password);
         };
 
@@ -140,6 +139,7 @@ const Welcome = ({loginUser, isLoggingIn, loginError, isAuthenticated}) => {
                 </div>
                 <div className="signin hide" id="signInPage">
                     <div className="signin-card">
+                        <p className='error main-error'>{loginErrorMessage}</p>
                         <div className="card-head">
                             <h1>Sign in</h1>
                             <p>New user? <span className='make-blue' onClick={changeToOut}>Create an account</span></p>
@@ -165,7 +165,10 @@ const Welcome = ({loginUser, isLoggingIn, loginError, isAuthenticated}) => {
                                        onBlur={welcomeValidatePass}/>
                             </label>
                             <div className="submit">
-                                <CustomButton button_type='submit' text='Submit'/>
+                                {
+                                    isLoggingIn ? <i className="fas fa-circle-notch fa-spin submit-spinner"/> :
+                                        <CustomButton button_type='submit' text='Submit'/>
+                                }
                             </div>
                         </form>
                         <div className="or">
@@ -185,9 +188,11 @@ function mapStateToProps(state) {
     return {
         isLoggingIn: state.auth.isLoggingIn,
         loginError: state.auth.loginError,
-        isAuthenticated: state.auth.isAuthenticated
+        isAuthenticated: state.auth.isAuthenticated,
+        loginErrorMessage: state.auth.loginErrorMessage,
     };
 }
+
 const mapDispatchToProps = dispatch => ({
     loginUser: (email, password) => dispatch(loginUser(email, password))
 });

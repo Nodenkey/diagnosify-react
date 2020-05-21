@@ -3,9 +3,11 @@ import "./navbar.style.css";
 import Logo from "../../assets/images/logo.png";
 import CustomButton from "../button/customButton";
 import {NavLink} from "react-router-dom";
+import {connect} from "react-redux";
+import {logoutUser} from "../../redux/actions";
 
 
-const NavBar = () => {
+const NavBar = ({logoutUser, isAuthenticated}) => {
     const [dropdownOn, setDropdownOn] = useState(false);
 
     const toggle = () => {
@@ -24,6 +26,10 @@ const NavBar = () => {
         }
     }, [dropdownOn]);
 
+    const handleLogout = () => {
+        logoutUser();
+    };
+
     return (
         <nav className="navbar navbar-expand-md navbar-light bg-light fixed-top">
             <NavLink to='/' exact={true}><img className="navbar-brand" src={Logo} alt="diagnosify_logo"/></NavLink>
@@ -36,7 +42,7 @@ const NavBar = () => {
                 <ul className="navbar-nav">
                     <li className="nav-item">
                         <NavLink activeClassName="active-nav" to="/" exact={true} className="nav-link"
-                        onClick={toggle}>Home</NavLink>
+                                 onClick={toggle}>Home</NavLink>
                     </li>
                     <li className="dropdown nav-item">
                         <span className="drop-button nav-link" data-toggle="dropdown"
@@ -51,16 +57,43 @@ const NavBar = () => {
                         About us
                     </span>
                     </li>
-                    <li className="nav-item">
-                    <span className="nav-link">
-                        <CustomButton text="Get Started" button_type='type1' link='/welcome' toggle={toggle}/>
-                    </span>
-                    </li>
+                    {
+                        isAuthenticated ? (
+                            <div className="logged">
+                                <li className="nav-item">
+                                    <NavLink activeClassName="active-nav" to='/dashboard' className="nav-link">
+                                        Dashboard
+                                    </NavLink>
+                                </li>
+                                <li className="nav-item">
+                                    <span className="nav-link" onClick={handleLogout}>
+                                        Logout
+                                    </span>
+                                </li>
+                            </div>
+                            ) :
+                            <li className="nav-item">
+                                <span className="nav-link">
+                                    <CustomButton text="Get Started" button_type='type1' link='/welcome'
+                                                  toggle={toggle}/>
+                                </span>
+                            </li>
+                    }
                 </ul>
             </div>
         </nav>
     )
 };
 
+const mapStateToProps = state => {
+    return {
+        isAuthenticated: state.auth.isAuthenticated,
+    }
+};
 
-export default NavBar;
+const mapDispatchToProps = dispatch => ({
+    logoutUser: () => dispatch(logoutUser()),
+});
+
+
+export default connect(mapStateToProps, mapDispatchToProps)(NavBar);

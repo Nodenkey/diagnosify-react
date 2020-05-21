@@ -1,13 +1,14 @@
 import React from "react";
 import "./sidebar.style.css";
+import {connect} from "react-redux";
 
 
-const UserSidebar = () => {
+const UserSidebar = ({user}) => {
     return (
         <aside className='main-aside'>
             <div className="head">
                 <h4 className="user">User</h4>
-                <p>Email@gmail.com</p>
+                <p>{user}</p>
             </div>
             <div className="aside-element">
                 <i className="fas fa-camera-retro icons"/>
@@ -33,4 +34,10 @@ const UserSidebar = () => {
     )
 };
 
-export default UserSidebar;
+const mapStateToProps = state => {
+    return{
+        user: state.auth.user.email,
+    }
+};
+
+export default connect(mapStateToProps)( UserSidebar);
