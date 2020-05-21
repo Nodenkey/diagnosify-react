@@ -3,10 +3,11 @@ import "./welcome.style.css";
 import CustomButton from "../../components/button/customButton";
 import {connect} from "react-redux";
 import {Redirect} from "react-router-dom";
-import {loginUser} from "../../redux/actions";
-import {errorObject, validateEmail, validatePassword} from "../../utils/validation";
+import {loginUser, signInWithGoogle, signUpUser} from "../../redux/actions";
+import {errorObject, validateEmail, validatePassword, validateSignIn, validateSignUp} from "../../utils/validation";
 
-const Welcome = ({loginUser, isLoggingIn, loginError, isAuthenticated, loginErrorMessage}) => {
+const Welcome = ({loginUser, isLoggingIn, isAuthenticated, loginErrorMessage, signUpUser, signUpErrorMessage,
+                     isSigningUp, googleSignIn, googleSignUp}) => {
         const [userCredentials, setUserCredentials] = useState({
             email: '',
             password: '',
@@ -93,15 +94,30 @@ const Welcome = ({loginUser, isLoggingIn, loginError, isAuthenticated, loginErro
             setUserCredentials({...userCredentials, password: event.target.value})
         };
 
-        const handleSubmit = (event) => {
+        const handleSignInSubmit = (event) => {
             event.preventDefault();
-            loginUser(userCredentials.email, userCredentials.password);
+            const isValid = validateSignIn(event);
+            errorSetter();
+            if (isValid){
+                loginUser(userCredentials.email, userCredentials.password);
+            }
         };
+
+        const handleSignUpSubmit = (event) => {
+            event.preventDefault();
+            const isValid = validateSignUp(event);
+            errorSetter();
+            if (isValid){
+                signUpUser(userCredentials.email, userCredentials.password);
+            }
+        };
+
 
         return isAuthenticated ? <Redirect to='/dashboard'/> : (
             <>
                 <div className="signup" id='signUpPage'>
                     <div className="signup-card">
+                        <p className='error main-error'>{signUpErrorMessage}</p>
                         <div className="card-head">
                             <h1>Sign up</h1>
                             <p>Already have an account? <span className='make-blue' onClick={changeToIn}>Sign in</span></p>
@@ -110,10 +126,10 @@ const Welcome = ({loginUser, isLoggingIn, loginError, isAuthenticated, loginErro
                             <p className='error signUpMailError'>{error.signUpMailError}</p>
                             <p className='error signUpPassError'>{error.signUpPassError}</p>
                         </div>
-                        <form action="" id="signUpForm">
+                        <form id="signUpForm" onSubmit={handleSignUpSubmit}>
                             <label htmlFor="signUpMail" className='form-input'>
                                 Email
-                                <input type="email" id='signUpMail' name='signUpMail' onChange={welcomeValidateEmail}
+                                <input type="email" id='signUpMail' name='signUpMail' onChange={handleEmailChange}
                                        onBlur={welcomeValidateEmail}/>
                             </label>
                             <label htmlFor="signUpPass" className='form-input'>
@@ -122,11 +138,14 @@ const Welcome = ({loginUser, isLoggingIn, loginError, isAuthenticated, loginErro
                                                                 <i className="far fa-eye-slash"
                                                                    style={{display: visible.cancelEye}}
                                                                    onClick={toggleVisible} id='cancelEye'/></span>
-                                <input type="text" id='signUpPass' name='signUpPass' onChange={welcomeValidatePass}
+                                <input type="text" id='signUpPass' name='signUpPass' onChange={handlePasswordChange}
                                        onBlur={welcomeValidatePass}/>
                             </label>
                             <div className="submit">
-                                <CustomButton button_type='submit' text='Submit'/>
+                                {
+                                    isSigningUp ? <i className="fas fa-circle-notch fa-spin submit-spinner"/> :
+                                        <CustomButton button_type='submit' text='Submit'/>
+                                }
                             </div>
                         </form>
                         <div className="or">
@@ -134,7 +153,7 @@ const Welcome = ({loginUser, isLoggingIn, loginError, isAuthenticated, loginErro
                             <p>Or</p>
                             <div className="h-line"/>
                         </div>
-                        <CustomButton button_type='google' text='Sign up with Google'/>
+                        <CustomButton button_type='google' text='Sign up with Google' clickFunction={googleSignUp}/>
                     </div>
                 </div>
                 <div className="signin hide" id="signInPage">
@@ -148,7 +167,7 @@ const Welcome = ({loginUser, isLoggingIn, loginError, isAuthenticated, loginErro
                             <p className='error signInMailError'>{error.signInMailError}</p>
                             <p className='error signInPassError'>{error.signInPassError}</p>
                         </div>
-                        <form id="signInForm" onSubmit={handleSubmit}>
+                        <form id="signInForm" onSubmit={handleSignInSubmit}>
                             <label htmlFor="signInMail" className='form-input'>
                                 Email
                                 <input type="email" id='sigInMail' name='signInMail' onChange={handleEmailChange}
@@ -176,7 +195,7 @@ const Welcome = ({loginUser, isLoggingIn, loginError, isAuthenticated, loginErro
                             <p>Or</p>
                             <div className="h-line"/>
                         </div>
-                        <CustomButton button_type='google' text='Sign in with Google'/>
+                        <CustomButton button_type='google' text='Sign in with Google' clickFunction={googleSignIn}/>
                     </div>
                 </div>
             </>
@@ -190,11 +209,17 @@ function mapStateToProps(state) {
         loginError: state.auth.loginError,
         isAuthenticated: state.auth.isAuthenticated,
         loginErrorMessage: state.auth.loginErrorMessage,
+        isSigningUp: state.auth.isSigningUp,
+        signUpError: state.auth.signUpError,
+        signUpErrorMessage: state.auth.signUpErrorMessage,
     };
 }
 
 const mapDispatchToProps = dispatch => ({
-    loginUser: (email, password) => dispatch(loginUser(email, password))
+    loginUser: (email, password) => dispatch(loginUser(email, password)),
+    signUpUser: (email, password) => dispatch(signUpUser(email, password)),
+    googleSignIn: () => dispatch(signInWithGoogle('signin')),
+    googleSignUp: () => dispatch(signInWithGoogle('signup')),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Welcome);

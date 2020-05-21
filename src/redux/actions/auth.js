@@ -1,11 +1,17 @@
 import {myFirebase} from "../../firebase/firebase";
+import {googleProvider} from "../../firebase/firebase";
 import {
     LOGIN_FAILURE,
     LOGIN_REQUEST,
-    LOGIN_SUCCESS, LOGOUT_FAILURE,
+    LOGIN_SUCCESS,
+    LOGOUT_FAILURE,
     LOGOUT_REQUEST,
     LOGOUT_SUCCESS,
-    VERIFY_REQUEST, VERIFY_SUCCESS
+    VERIFY_REQUEST,
+    VERIFY_SUCCESS,
+    SIGN_UP_SUCCESS,
+    SIGN_UP_REQUEST,
+    SIGN_UP_FAILURE,
 } from "../constants";
 
 const requestLogin = () => {
@@ -59,8 +65,27 @@ const verifySuccess = () => {
     };
 };
 
+const requestSignUp = () => {
+  return {
+      type: SIGN_UP_REQUEST
+  }
+};
+
+const receiveSignUp = user => {
+  return {
+      type: SIGN_UP_SUCCESS,
+      user
+  }
+};
+
+const signUpError = error => {
+  return {
+      type: SIGN_UP_FAILURE,
+      error
+  }
+};
+
 export const loginUser = (email, password) => dispatch => {
-    console.log('EMAIL', email);
     dispatch(requestLogin());
     myFirebase
         .auth()
@@ -83,7 +108,6 @@ export const logoutUser = () => dispatch => {
             dispatch(receiveLogout());
         })
         .catch(error => {
-            //Do something with the error if you want!
             dispatch(logoutError(error));
         });
 };
@@ -96,4 +120,33 @@ export const verifyAuth = () => dispatch => {
         }
         dispatch(verifySuccess());
     });
+};
+
+export const signUpUser = (email, password) => dispatch => {
+    dispatch(requestSignUp());
+    myFirebase.auth().createUserWithEmailAndPassword(email, password).then(user => {
+        dispatch(receiveSignUp(user));
+        dispatch(receiveLogin(user));
+    }).catch(error => {
+        dispatch(signUpError(error));
+    });
+};
+
+export const signInWithGoogle = (type) => dispatch => {
+    if (type === 'signup'){
+        dispatch(requestSignUp());
+        myFirebase.auth().signInWithPopup(googleProvider).then(user => {
+            dispatch(receiveSignUp(user));
+        }).catch(error => {
+            dispatch(signUpError(error));
+        });
+    }else {
+        dispatch(requestLogin());
+        myFirebase.auth().signInWithPopup(googleProvider).then(user => {
+            dispatch(receiveLogout(user));
+        }).catch(error => {
+            dispatch(loginError(error));
+        });
+    }
+
 };

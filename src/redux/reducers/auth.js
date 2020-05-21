@@ -6,7 +6,10 @@ import {
     LOGOUT_REQUEST,
     LOGOUT_SUCCESS,
     VERIFY_REQUEST,
-    VERIFY_SUCCESS
+    VERIFY_SUCCESS,
+    SIGN_UP_SUCCESS,
+    SIGN_UP_REQUEST,
+    SIGN_UP_FAILURE,
 } from "../constants";
 
 const INITIAL_STATE = {
@@ -17,7 +20,11 @@ const INITIAL_STATE = {
     logoutError: false,
     isAuthenticated: false,
     user: {},
-    loginErrorMessage: ''
+    loginErrorMessage: '',
+    isSigningUp: false,
+    signUpError: false,
+    signedUp: false,
+    signUpErrorMessage: '',
 };
 
 const userReducer = (state = INITIAL_STATE, action) => {
@@ -37,11 +44,11 @@ const userReducer = (state = INITIAL_STATE, action) => {
             };
         case LOGOUT_REQUEST:
             return {
-                ...state, isLoggingOut: true, logoutError: false,
+                ...state, isLoggingOut: true, logoutError: false, signUpErrorMessage: '', loginErrorMessage: '',
             };
         case LOGOUT_SUCCESS:
             return {
-                ...state, isLoggingOut: false, isAuthenticated: false, user: {},
+                ...state, isLoggingOut: false, isAuthenticated: false, user: {}, signUpErrorMessage: '', loginErrorMessage: '',
             };
         case LOGOUT_FAILURE:
             return{
@@ -57,6 +64,18 @@ const userReducer = (state = INITIAL_STATE, action) => {
             return {
                 ...state,
                 isVerifying: false
+            };
+        case SIGN_UP_REQUEST:
+            return {
+              ...state, isSigningUp: true,  signedUp: false,
+            };
+        case SIGN_UP_SUCCESS:
+            return {
+              ...state, isSigningUp: false, signUpError: false, signedUp: true,
+            };
+        case SIGN_UP_FAILURE:
+            return {
+              ...state, isSigningUp: false, signedUp: false, signUpError: true, signUpErrorMessage: action.error.message,
             };
         default:
             return state
