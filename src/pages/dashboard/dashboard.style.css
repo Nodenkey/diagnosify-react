@@ -10,8 +10,21 @@
 .main-dashboard .dashboard{
     padding: 20px;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
+}
+.main-dashboard .dashboard .dashboard-header{
+    width: 100%;
+}
+.dashboard .user-mail::before{
+    content: '';
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    border-radius: 100px;
+    margin-right: 10px;
+    background: var(--dark-blue);
 }
 @media only screen and (min-width: 768px){
     .main-dashboard .sidebar{
@@ -24,5 +37,7 @@
     .main-dashboard .dashboard{
         width: 80%;
     }
-
+    .main-dashboard .dashboard .dashboard-header{
+        display: none;
+    }
 }
