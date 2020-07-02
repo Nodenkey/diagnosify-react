@@ -25,7 +25,7 @@
 
 .aside-element:hover{
     cursor: pointer;
-    background: rgb(0, 104, 144);
+    background: rgb(0, 104, 144) !important;
 }
 .main-aside .icons{
     font-weight: 900;
@@ -84,4 +84,8 @@
         border-bottom: none;
         border-right: 5px solid var(--dark-blue);
     }
+}
+
+.element-active{
+    background: black;
 }

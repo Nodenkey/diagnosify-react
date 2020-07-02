@@ -10,3 +10,10 @@ export const VERIFY_SUCCESS = "VERIFY_SUCCESS";
 export const SIGN_UP_REQUEST = "SIGN_UP_REQUEST";
 export const SIGN_UP_SUCCESS = "SIGN_UP_SUCCESS";
 export const SIGN_UP_FAILURE = "SIGN_UP_FAILURE";
+
+
+export const TAKE_SCAN = 'TAKE_SCAN';
+export const DOCTOR = 'DOCTOR';
+export const SCAN_HISTORY = 'SCAN_HISTORY';
+export const DISEASE_BOOK = 'DISEASE_BOOK';
+export const FEEDBACK = 'FEEDBACK';

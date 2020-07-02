@@ -3,6 +3,7 @@ import "./dashboard.style.css";
 import UserSidebar from "../../components/sidebar/userSidebar";
 import DoctorSidebar from "../../components/sidebar/doctorSidebar";
 import {connect} from "react-redux";
+import DashboardRight from "../../components/dashboard-right/dashboard-right.component";
 
 
 const Dashboard = ({user}) => {
@@ -14,7 +15,7 @@ const Dashboard = ({user}) => {
             </div>
             <div className="dashboard">
                 <div className="dashboard-header"><p className="user-mail">{user}</p></div>
-                <h1>Coming soon</h1>
+                <DashboardRight/>
             </div>
         </div>
     )
