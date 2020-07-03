@@ -1,14 +1,13 @@
 import React, {useEffect} from 'react';
 import {DashboardWrapper} from "./dashboard-right.style";
 import {connect} from "react-redux";
+import TakeScan from "../take-scan/take-scan.component";
 
 const DashboardRight = ({screen}) => {
     console.log('screen', screen);
     if (screen === 'take-scan'){
         return (
-            <DashboardWrapper>
-                <h1>Take scan</h1>
-            </DashboardWrapper>
+            <TakeScan/>
         )
     }else if (screen === 'my-doctor'){
         return (
