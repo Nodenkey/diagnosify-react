@@ -42,8 +42,55 @@ i{
 font-size: 3rem;
 cursor: pointer;
 }
-i:hover{
+#uploader:hover{
 color: var(--dark-blue);
+position: relative;
+&::after{
+content: 'Upload image';
+position: absolute;
+left: 0;
+display: inline-block;
+font-size: 0.8rem;
+z-index: 1;
+top: 110%;
+color: black;
+animation: move-out 250ms ease-out both;
+@keyframes move-out {
+from {
+transform: translateY(-25px);
+opacity : 0;
+}
+to {
+transform: translateY(0);
+opacity : 1;
+}
+}
+}
+}
+#scanner:hover{
+color: var(--dark-blue);
+position: relative;
+&::after{
+content: 'Scan image';
+position: absolute;
+left: 0;
+display: inline-block;
+font-size: 0.8rem;
+z-index: 1;
+top: 110%;
+color: black;
+animation: move-out 250ms ease-out both;
+@keyframes move-out {
+from {
+transform: translateY(-25px);
+opacity : 0;
+}
+to {
+transform: translateY(0);
+opacity : 1;
+}
+}
+}
 }
 label{
 margin-right: 10%;

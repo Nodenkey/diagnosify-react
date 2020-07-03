@@ -58,15 +58,20 @@
     padding: 50px 5%! important;
     text-align: center;
 }
-.medium h3{
+.medium h4{
     line-height: 2em;
     font-weight: 900;
 }
-.medium h3::before, .medium h3::after{
+@media only screen and (min-width: 600px){
+    .medium h4 {
+        font-size: 2rem;
+    }
+}
+.medium h4::before, .medium h4::after{
     content: open-quote;
     font-size: 3em;
 }
-.medium h3::after{
+.medium h4::after{
     content: close-quote;
 }
 .whiten{

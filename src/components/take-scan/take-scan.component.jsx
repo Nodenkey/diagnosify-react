@@ -70,11 +70,11 @@ const TakeScan = () => {
             <Form method="post" enctype="multipart/form-data">
                 <IconsWrapper>
                     <label htmlFor="file">
-                        <i className="fas fa-file-upload"/>
+                        <i className="fas fa-file-upload" id='uploader'/>
                     </label>
                     <input type="file" id="file" name="file" accept=".jpg, .jpeg, .png" onChange={updateImageDisplay}
                            ref={el => upload = el}/>
-                    <i className="fas fa-search-plus"/>
+                    <i className="fas fa-search-plus" id='scanner'/>
                 </IconsWrapper>
             </Form>
         </ScanWrapper>
