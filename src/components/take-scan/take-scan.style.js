@@ -41,6 +41,7 @@ align-items: center;
 i{
 font-size: 3rem;
 cursor: pointer;
+color: var(--blue);
 }
 #uploader:hover{
 color: var(--dark-blue);

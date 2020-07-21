@@ -5,6 +5,8 @@ import {connect} from "react-redux";
 import {Redirect} from "react-router-dom";
 import {loginUser, signInWithGoogle, signUpUser} from "../../redux/actions";
 import {errorObject, validateEmail, validatePassword, validateSignIn, validateSignUp} from "../../utils/validation";
+import NavBar from "../../components/navbar/navbar";
+import Footer from "../../components/footer/footer";
 
 const Welcome = ({loginUser, isLoggingIn, isAuthenticated, loginErrorMessage, signUpUser, signUpErrorMessage,
                      isSigningUp, googleSignIn, googleSignUp}) => {
@@ -115,6 +117,7 @@ const Welcome = ({loginUser, isLoggingIn, isAuthenticated, loginErrorMessage, si
 
         return isAuthenticated ? <Redirect to='/dashboard'/> : (
             <>
+                <NavBar/>
                 <div className="signup" id='signUpPage'>
                     <div className="signup-card">
                         <p className='error main-error'>{signUpErrorMessage}</p>
@@ -198,6 +201,7 @@ const Welcome = ({loginUser, isLoggingIn, isAuthenticated, loginErrorMessage, si
                         <CustomButton button_type='google' text='Sign in with Google' clickFunction={googleSignIn}/>
                     </div>
                 </div>
+                <Footer/>
             </>
         )
     }

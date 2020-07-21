@@ -1,36 +1,55 @@
 import {DISEASE_BOOK, DOCTOR, FEEDBACK, SCAN_HISTORY, TAKE_SCAN} from "../constants";
 
-export const selectTakeScan = () => {
-    console.log('dispatched scan');
+
+//types
+
+const scan = () => {
     return {
         type: TAKE_SCAN
     }
 }
 
-export const selectDoctor = () => {
-    console.log('dispatched doc');
+const doctor = () => {
     return {
         type: DOCTOR
     }
 }
 
-export const selectHistory = () => {
-    console.log('dispatched history');
+const history = () => {
     return {
         type: SCAN_HISTORY
     }
 }
 
-export const selectDiseaseBook = () => {
-    console.log('dispatched book');
+const diseaseBook = () => {
     return {
         type: DISEASE_BOOK
     }
 }
 
-export const selectFeedback = () => {
-    console.log('dispatched feedback');
+const feedback = () => {
     return {
         type: FEEDBACK
     }
+}
+//dispatchers
+
+export const selectTakeScan = dispatch => {
+    dispatch(scan());
+}
+
+export const selectDoctor = dispatch => {
+    dispatch(doctor());
+}
+
+export const selectHistory = dispatch => {
+    dispatch(history());
+}
+
+export const selectDiseaseBook = dispatch => {
+    dispatch(diseaseBook());
+}
+
+export const selectFeedback = dispatch => {
+    dispatch(feedback());
 }

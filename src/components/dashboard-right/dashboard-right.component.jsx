@@ -1,10 +1,14 @@
-import React, {useEffect} from 'react';
+import React from 'react';
 import {DashboardWrapper} from "./dashboard-right.style";
 import {connect} from "react-redux";
 import TakeScan from "../take-scan/take-scan.component";
+import UserDoctor from "../user-doctor/user-doctor.component";
+import ScanHistory from "../scan-history/scan-history.component";
+import DiseaseBook from "../disease-book/disease-book.component";
+import Feedback from "../feedback/feedback.component";
 
 const DashboardRight = ({screen}) => {
-    console.log('screen', screen);
+
     if (screen === 'take-scan'){
         return (
             <TakeScan/>
@@ -12,25 +16,25 @@ const DashboardRight = ({screen}) => {
     }else if (screen === 'my-doctor'){
         return (
             <DashboardWrapper>
-                <h1>Doctor</h1>
+                <UserDoctor/>
             </DashboardWrapper>
         )
     }else if (screen === 'scan-history'){
         return (
             <DashboardWrapper>
-                <h1>History</h1>
+                <ScanHistory/>
             </DashboardWrapper>
         )
     }else if (screen === 'disease-book'){
         return (
             <DashboardWrapper>
-                <h1>Book</h1>
+                <DiseaseBook/>
             </DashboardWrapper>
         )
     }else if (screen === 'feedback'){
         return (
             <DashboardWrapper>
-                <h1>Doctor</h1>
+                <Feedback/>
             </DashboardWrapper>
         )
     }

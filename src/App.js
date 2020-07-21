@@ -1,22 +1,24 @@
 import React from 'react';
 import './App.css';
-import Homepage from "./pages/homepage/homepage";
 import ProtectedRoute from "./components/protected/ProtectedRoute";
 import ScrollToTop from "./utils/scroll-to-top";
 import {connect} from "react-redux";
 import {Switch, Route} from "react-router-dom";
-import NavBar from "./components/navbar/navbar";
-import Footer from "./components/footer/footer";
-import Welcome from "./pages/welcome/welcome";
-import Dashboard from "./pages/dashboard/dashboard";
+import { Suspense, lazy } from 'react';
+
+import Loader from "./components/loader/loader.component";
+
+const Home = lazy(() => import("./pages/homepage/homepage"));
+const Welcome = lazy(() => import("./pages/welcome/welcome"));
+const Dashboard = lazy(() => import("./pages/dashboard/dashboard"));
 
 
 function App({isAuthenticated, isVerifying}) {
     return <>
-        <ScrollToTop/>
-        <NavBar/>
+    <Suspense fallback={<Loader/>}>
+    <ScrollToTop/>
         <Switch>
-            <Route path="/" exact component={Homepage}/>
+            <Route path="/" exact component={Home}/>
             <Route path='/welcome' component={Welcome}/>
             <ProtectedRoute
                 path="/dashboard"
@@ -25,7 +27,7 @@ function App({isAuthenticated, isVerifying}) {
                 isVerifying={isVerifying}
             />
         </Switch>
-        <Footer/>
+    </Suspense>
     </>
 
 }

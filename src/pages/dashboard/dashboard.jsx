@@ -4,25 +4,31 @@ import UserSidebar from "../../components/sidebar/userSidebar";
 import DoctorSidebar from "../../components/sidebar/doctorSidebar";
 import {connect} from "react-redux";
 import DashboardRight from "../../components/dashboard-right/dashboard-right.component";
+import NavBar from "../../components/navbar/navbar";
+import Footer from "../../components/footer/footer";
 
 
 const Dashboard = ({user}) => {
     return (
-        <div className='main-dashboard'>
-            <div className="sidebar">
-                <UserSidebar/>
-                {/*<DoctorSidebar/>*/}
+        <>
+            <NavBar/>
+            <div className='main-dashboard'>
+                <div className="sidebar">
+                    <UserSidebar/>
+                    {/*<DoctorSidebar/>*/}
+                </div>
+                <div className="dashboard">
+                    <div className="dashboard-header"><p className="user-mail">{user}</p></div>
+                    <DashboardRight/>
+                </div>
             </div>
-            <div className="dashboard">
-                <div className="dashboard-header"><p className="user-mail">{user}</p></div>
-                <DashboardRight/>
-            </div>
-        </div>
+            <Footer/>
+        </>
     )
 };
 
 const mapStateToProps = state => {
-    return{
+    return {
         user: state.auth.user.email,
     }
 };
