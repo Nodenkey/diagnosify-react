@@ -1,5 +1,7 @@
 import React from "react";
 import "./footer.style.css"
+import {Link} from "react-router-dom";
+
 
 const Footer = () => {
     return (
@@ -7,7 +9,7 @@ const Footer = () => {
             <div className="footer-terms">
                 <p>Copyright &copy; 2020. All rights reserved | Diagnosify Limited
                 </p>
-                <a className="terms">Terms and conditions</a>
+                <Link to="/"><p className="terms">Terms and conditions</p></Link>
             </div>
         </section>
     )

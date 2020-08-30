@@ -2,7 +2,7 @@ import React, {useEffect, useState} from "react";
 import "./navbar.style.css";
 import Logo from "../../assets/images/logo.png";
 import CustomButton from "../button/customButton";
-import {NavLink} from "react-router-dom";
+import {NavLink, Link} from "react-router-dom";
 import {connect} from "react-redux";
 import {logoutUser} from "../../redux/actions";
 
@@ -48,14 +48,13 @@ const NavBar = ({logoutUser, isAuthenticated}) => {
                         <span className="drop-button nav-link" data-toggle="dropdown"
                               data-target="service_target">Services</span>
                         <div className="dropdown-content dropdown-menu" aria-labelledby="service_target">
-                            <a href="#" onClick={toggle}>Scan image</a>
-                            <a href="#" onClick={toggle}>Get mobile app</a>
+                            <Link to="/dashboard" onClick={toggle}>Scan image</Link>
+                            <Link to="/mobile" onClick={toggle}>Get mobile app</Link>
                         </div>
                     </li>
                     <li className="nav-item">
-                    <span className="nav-link" onClick={toggle}>
-                        About us
-                    </span>
+                        <NavLink activeClassName="active-nav" to="/about"  className="nav-link"
+                                 onClick={toggle}>About Us</NavLink>
                     </li>
                     {
                         isAuthenticated ? (

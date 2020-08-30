@@ -11,6 +11,8 @@ import Loader from "./components/loader/loader.component";
 const Home = lazy(() => import("./pages/homepage/homepage"));
 const Welcome = lazy(() => import("./pages/welcome/welcome"));
 const Dashboard = lazy(() => import("./pages/dashboard/dashboard"));
+const About = lazy(() => import("./pages/about/about"));
+const Mobile = lazy(() => import("./pages/mobilepage/mobile"));
 
 
 function App({isAuthenticated, isVerifying}) {
@@ -19,7 +21,9 @@ function App({isAuthenticated, isVerifying}) {
     <ScrollToTop/>
         <Switch>
             <Route path="/" exact component={Home}/>
+            <Route path="/about" exact component={About}/>
             <Route path='/welcome' component={Welcome}/>
+            <Route path='/mobile' component={Mobile}/>
             <ProtectedRoute
                 path="/dashboard"
                 component={Dashboard}

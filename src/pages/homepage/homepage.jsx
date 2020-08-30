@@ -7,6 +7,8 @@ import Nii from "../../assets/images/nii.jpg";
 import GTL from "../../assets/images/gtl_logo.png";
 import NavBar from "../../components/navbar/navbar";
 import Footer from "../../components/footer/footer";
+import AiComponent from "../../components/about-ai/about-ai.component";
+import Emergency from "../../components/emergency/emergency.component";
 
 const Homepage = () => {
     return (
@@ -16,12 +18,12 @@ const Homepage = () => {
                 <div className="cover">
                     <div className="overlay">
                         <h1>Skin disease diagnosis <br/>at your fingertips</h1>
-                        <h3>Get more functionality on Android and iOS</h3>
-                        <div className="cover-buttons">
-                            <CustomButton text="Google play" button_type='type2' icon="fab fa-google-play"/>
-                            <div className="space"/>
-                            <CustomButton text="Apple store" button_type='type3' icon="fab fa-apple"/>
-                        </div>
+                        {/*<h3>Get more functionality on Android and iOS</h3>*/}
+                        {/*<div className="cover-buttons">*/}
+                        {/*    <CustomButton text="Google play" button_type='type2' icon="fab fa-google-play"/>*/}
+                        {/*    <div className="space"/>*/}
+                        {/*    <CustomButton text="Apple store" button_type='type3' icon="fab fa-apple"/>*/}
+                        {/*</div>*/}
                     </div>
                 </div>
                 <section className="container-fluid problem-statement">
@@ -67,6 +69,7 @@ const Homepage = () => {
                         </div>
                     </div>
                 </section>
+                <AiComponent/>
                 <section className="medium">
                     <h4>AI Startup, Diagnosify is leveraging advanced technology to aid patients with proficient
                         diagnosis and treatment of skin diseases in the health sector of Ghana.</h4>
@@ -79,6 +82,7 @@ const Homepage = () => {
                     <h1>Our partners</h1>
                     <img src={GTL} alt="Ghana tech lab logo" data-aos="slide-left"/>
                 </section>
+                <Emergency/>
                 <section className="team">
                     <h1>Meet the team</h1>
                     <div className="cards">

@@ -1,7 +1,6 @@
 import React from "react";
 import "./dashboard.style.css";
 import UserSidebar from "../../components/sidebar/userSidebar";
-import DoctorSidebar from "../../components/sidebar/doctorSidebar";
 import {connect} from "react-redux";
 import DashboardRight from "../../components/dashboard-right/dashboard-right.component";
 import NavBar from "../../components/navbar/navbar";

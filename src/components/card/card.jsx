@@ -13,9 +13,9 @@ const CustomCard = ({image, info, name, facebook, linkedIn, twitter, expertise})
                 <div className="info">
                     <h5>{name}</h5>
                     <p>{info}</p>
-                    <a href={twitter} className="fab fa-twitter" target="_blank" rel="noopener noreferrer"/>
-                    <a href={facebook} className="fab fa-facebook-f" target="_blank" rel="noopener noreferrer"/>
-                    <a href={linkedIn} className="fab fa-linkedin" target="_blank" rel="noopener noreferrer"/>
+                    <a href={twitter} rel="noopener noreferrer" target="_blank"><i className="fab fa-twitter"/></a>
+                    <a href={facebook} target="_blank" rel="noopener noreferrer"><i className="fab fa-facebook-f"/></a>
+                    <a href={linkedIn} target="_blank" rel="noopener noreferrer"><i className="fab fa-linkedin"/></a>
                 </div>
             </div>
         </>
