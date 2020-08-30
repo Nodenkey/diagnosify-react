@@ -4,9 +4,11 @@ export const EmergencyLayout = styled.div`
   display: grid;
   width: 100%;
   align-items: center;
-  height: 80vh;
-  grid-template-columns: 1fr 1.5fr;
+  grid-template-columns: 1fr;
   grid-gap: 50px;
+  >div{
+  order: 2
+  }
   h1{
   text-align: left;
   line-height: 150%;
@@ -17,10 +19,22 @@ export const EmergencyLayout = styled.div`
   text-align: left;
   }
   img{
+  min-height: 300px;
   object-fit: cover;
+  order: 1;
   object-position: center;
   height: 100%;
   width: 100%;
   filter: grayscale(.5);
+  }
+  @media only screen and (min-width: 600px){
+    grid-template-columns: 1fr 1.5fr;
+    height: 80vh;
+    >div{
+    order: 1
+    }
+    img{
+    order: 2
+    }
   }
 `;
