@@ -19,11 +19,10 @@ export const EmergencyLayout = styled.div`
   text-align: left;
   }
   img{
-  min-height: 300px;
+  height: 300px;
   object-fit: cover;
   order: 1;
   object-position: center;
-  height: 100%;
   width: 100%;
   filter: grayscale(.5);
   }
@@ -34,7 +33,8 @@ export const EmergencyLayout = styled.div`
     order: 1
     }
     img{
-    order: 2
+    order: 2;
+    height: 100%
     }
   }
 `;
