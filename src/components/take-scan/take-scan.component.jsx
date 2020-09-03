@@ -11,6 +11,7 @@ import {
 } from "./take-scan.style";
 import Placeholder from "../../assets/images/placeholder.png";
 import axios from "axios";
+import {diseaseCheck} from "../../utils/disease-check";
 
 
 const TakeScan = () => {
@@ -98,11 +99,9 @@ const TakeScan = () => {
             setLoading(true);
             await axios.post(proxy + 'http://52.3.246.8/predict', {file: base64Image})
                 .then(res => {
-                    console.log(res.data);
-                    console.log(res.data.result[0].label);
                     setUserResults({
                         ...userResults,
-                        lesion: res.data.result[0].label,
+                        lesion: diseaseCheck(res.data.result[0].label),
                         probability: res.data.result[0].prob.toString().substring(0, 4)
                     })
                 });
@@ -120,10 +119,9 @@ const TakeScan = () => {
         //check if it is the placeholder
         if (filename === 'placeholder.3aec8aa3.png') {
             info.textContent = 'You must select an image before you can scan';
-            info.style.color = 'red';
         } else {
             //set up cors-anywhere headers
-            const proxyurl = "https://cors-anywhere.herokuapp.com/";
+            const proxyurl = "https://pacific-wave-71648.herokuapp.com/";
             let base64Image = '';
 
             toDataURL(initialImage.src, (dataURL) => {
@@ -148,7 +146,7 @@ const TakeScan = () => {
             <Form method="post" enctype="multipart/form-data">
                 <IconsWrapper>
                     {
-                        loading ? <ResultLoader>Scanning...</ResultLoader> : <> <label htmlFor="file">
+                        loading ? <ResultLoader>scanning...</ResultLoader> : <> <label htmlFor="file">
                             <i className="fas fa-file-upload" id='uploader'/>
                         </label>
                             <input type="file" id="file" name="file" accept=".jpg, .jpeg, .png"
