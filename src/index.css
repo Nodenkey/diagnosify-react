@@ -51,3 +51,11 @@ input:-webkit-autofill {
   --dark-blue: #0091bd;
   --blue: #46c2e8;
 }
+
+.make-blue{
+  color: var(--dark-blue);
+}
+
+.make-blue:hover{
+  text-decoration: underline;
+}

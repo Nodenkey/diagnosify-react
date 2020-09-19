@@ -36,6 +36,11 @@
 
 .card a{
     margin-right: 20px;
+    color: black;
+}
+
+.card i{
+    font-size: 2rem;
 }
 
 .card a:last-of-type{

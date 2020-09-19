@@ -118,7 +118,7 @@ const Welcome = ({loginUser, isLoggingIn, isAuthenticated, loginErrorMessage, si
         return isAuthenticated ? <Redirect to='/dashboard'/> : (
             <>
                 <NavBar/>
-                <div className="signup" id='signUpPage'>
+                <div className="signup hide" id='signUpPage'>
                     <div className="signup-card">
                         <p className='error main-error'>{signUpErrorMessage}</p>
                         <div className="card-head">
@@ -142,7 +142,7 @@ const Welcome = ({loginUser, isLoggingIn, isAuthenticated, loginErrorMessage, si
                                                                    style={{display: visible.cancelEye}}
                                                                    onClick={toggleVisible} id='cancelEye'/></span>
                                 <input type="text" id='signUpPass' name='signUpPass' onChange={handlePasswordChange}
-                                       onBlur={welcomeValidatePass}/>
+                                       onBlur={welcomeValidatePass} autoComplete="on"/>
                             </label>
                             <div className="submit">
                                 {
@@ -159,7 +159,7 @@ const Welcome = ({loginUser, isLoggingIn, isAuthenticated, loginErrorMessage, si
                         <CustomButton button_type='google' text='Sign up with Google' clickFunction={googleSignUp}/>
                     </div>
                 </div>
-                <div className="signin hide" id="signInPage">
+                <div className="signin" id="signInPage">
                     <div className="signin-card">
                         <p className='error main-error'>{loginErrorMessage}</p>
                         <div className="card-head">
@@ -184,7 +184,7 @@ const Welcome = ({loginUser, isLoggingIn, isAuthenticated, loginErrorMessage, si
                                                                    onClick={toggleVisible} id='cancelEye'/>
                             </span>
                                 <input type="text" id='signInPass' name='signInPass' onChange={handlePasswordChange}
-                                       onBlur={welcomeValidatePass}/>
+                                       onBlur={welcomeValidatePass} autoComplete="on"/>
                             </label>
                             <div className="submit">
                                 {

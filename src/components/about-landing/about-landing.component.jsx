@@ -1,5 +1,6 @@
 import React from 'react';
-import {AboutLandingWrapper, BigHeader} from "./about-landing.style";
+import {AboutLandingWrapper} from "./about-landing.style";
+import {BigHeader} from "../globalStyles/globalStyles";
 
 const AboutLanding = () => {
     return (

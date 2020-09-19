@@ -1,9 +1,6 @@
 import React from "react";
 import "./homepage.style.css";
 import CustomButton from "../../components/button/customButton";
-import CustomCard from "../../components/card/card";
-import Mike from "../../assets/images/mike.jpg";
-import Nii from "../../assets/images/nii.jpg";
 import GTL from "../../assets/images/gtl_logo.png";
 import NavBar from "../../components/navbar/navbar";
 import Footer from "../../components/footer/footer";
@@ -83,22 +80,6 @@ const Homepage = () => {
                     <img src={GTL} alt="Ghana tech lab logo" data-aos="slide-left"/>
                 </section>
                 <Emergency/>
-                <section className="team">
-                    <h1>Meet the team</h1>
-                    <div className="cards">
-                        <div className="team-card">
-                            <CustomCard image={Mike} name="Michael Asante"
-                                        info="Technochrat | Data Engineer | Researcher | Cloud manager"
-                            />
-                        </div>
-                        <div className="team-card">
-                            <CustomCard image={Nii} name="Samuel Abbey"
-                                        info="Web developer | UI/UX designer | Biologist"
-                                        facebook="https://web.facebook.com/nii.o.abbey"
-                                        linkedIn="https://www.linkedin.com/in/samuel-abbey-618957168/"/>
-                        </div>
-                    </div>
-                </section>
                 <section className="jumbo">
                     <div className="overlay jumbo-overlay">
                         <div className="jumbo-text" data-aos="slide-up">

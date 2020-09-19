@@ -13,12 +13,3 @@ export const AboutLandingWrapper = styled.section`
   }
 `;
 
-export const BigHeader = styled.h1`
-  font-size: 1.6rem;
-  color: black;
-  line-height: 160%;
-  @media only screen and (min-width: 600px){
-  font-size: 4rem;
-  width: 70%;
-  }
-`;
